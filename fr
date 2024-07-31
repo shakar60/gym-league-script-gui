@@ -1,0 +1,90 @@
+-- Create the ScreenGui
+local gui = Instance.new("ScreenGui")
+gui.Name = "GymLeagueGui"
+gui.ResetOnSpawn = false -- Prevents GUI from being removed on respawn
+
+-- Create the main frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 200, 0, 280) -- Adjusted height
+mainFrame.Position = UDim2.new(0.5, -100, 0.5, -135)
+mainFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = gui
+
+-- Create title label
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Name = "TitleLabel"
+titleLabel.Size = UDim2.new(1, 0, 0, 20)
+titleLabel.Position = UDim2.new(0, 0, 0, 0)
+titleLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+titleLabel.BorderSizePixel = 0
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.Text = "Gym League Gui"
+titleLabel.Font = Enum.Font.SourceSans
+titleLabel.TextSize = 16
+titleLabel.Parent = mainFrame
+
+-- Define script URLs
+local scripts = {
+    ["LightTuxs Script Hub (Key Sys)"] = "https://raw.githubusercontent.com/cool83birdcarfly02six/Lightux/main/README.md",
+    ["Tuffs Gym League Script Gui (Key Sys)"] = "https://raw.githubusercontent.com/ThisIsTuff/ArmWrestleSim/main/GymLeague.lua",
+    ["Speed Hub X Gym League Script Gui"] = "https://raw.githubusercontent.com/AhmadV99/Script-Games/main/Gym%20League.lua",
+    ["MadBuks Gym League Script Gui"] = "https://raw.githubusercontent.com/MadbukScripts/Scripts/main/Obfuscated%20Gym%20League.lua",
+    ["Ryk Gym League Script Gui (Key Sys)"] = "https://ryk.bloxteam.com/loader.lua",
+}
+
+-- Order scripts as desired
+local orderedScripts = {
+    "LightTuxs Script Hub (Key Sys)",
+    "Tuffs Gym League Script Gui (Key Sys)",
+    "Speed Hub X Gym League Script Gui",
+    "MadBuks Gym League Script Gui",
+    "Ryk Gym League Script Gui (Key Sys)"
+}
+
+-- Create buttons for each script
+local yOffset = 30  -- Initial vertical offset
+for _, name in ipairs(orderedScripts) do
+    local url = scripts[name]
+    local button = Instance.new("TextButton")
+    button.Name = "ScriptButton_"..name
+    button.Size = UDim2.new(0, 180, 0, 40)
+    button.Position = UDim2.new(0, 10, 0, yOffset)
+    button.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    button.BorderSizePixel = 0
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Text = name
+    button.Font = Enum.Font.SourceSans
+    button.TextSize = 14
+    button.Parent = mainFrame
+
+    button.MouseButton1Click:Connect(function()
+        loadstring(game:HttpGet(url, true))()
+        print("Script Executed: "..name)
+    end)
+
+    yOffset = yOffset + 50  -- Increase vertical offset for next button
+end
+
+-- Create close button
+local closeButton = Instance.new("TextButton")
+closeButton.Name = "CloseButton"
+closeButton.Size = UDim2.new(0, 20, 0, 20)
+closeButton.Position = UDim2.new(1, -20, 0, 0)
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+closeButton.BorderSizePixel = 0
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.Text = "X"
+closeButton.Font = Enum.Font.SourceSans
+closeButton.TextSize = 14
+closeButton.Parent = titleLabel
+
+closeButton.MouseButton1Click:Connect(function()
+    gui:Destroy()
+end)
+
+-- Parent GUI to PlayerGui
+local player = game.Players.LocalPlayer
+gui.Parent = player:WaitForChild("PlayerGui")
