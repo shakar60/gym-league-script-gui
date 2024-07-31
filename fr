@@ -5,7 +5,7 @@ gui.ResetOnSpawn = false -- Prevents GUI from being removed on respawn
 
 -- Create the main frame
 local mainFrame = Instance.new("Frame")
-mainFrame.Size = UDim2.new(0, 200, 0, 280) -- Adjusted height
+mainFrame.Size = UDim2.new(0, 200, 0, 330) -- Adjusted height
 mainFrame.Position = UDim2.new(0.5, -100, 0.5, -135)
 mainFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
 mainFrame.BorderSizePixel = 0
@@ -33,15 +33,18 @@ local scripts = {
     ["Speed Hub X Gym League Script Gui"] = "https://raw.githubusercontent.com/AhmadV99/Script-Games/main/Gym%20League.lua",
     ["MadBuks Gym League Script Gui"] = "https://raw.githubusercontent.com/MadbukScripts/Scripts/main/Obfuscated%20Gym%20League.lua",
     ["Ryk Gym League Script Gui (Key Sys)"] = "https://ryk.bloxteam.com/loader.lua",
+    ["Toras Gym League Script Gui (Key Sys)"] = "https://raw.githubusercontent.com/ToraScript/Script/main/GymLeague",
 }
 
 -- Order scripts as desired
+
 local orderedScripts = {
     "LightTuxs Script Hub (Key Sys)",
     "Tuffs Gym League Script Gui (Key Sys)",
     "Speed Hub X Gym League Script Gui",
     "MadBuks Gym League Script Gui",
-    "Ryk Gym League Script Gui (Key Sys)"
+    "Ryk Gym League Script Gui (Key Sys)",
+    "Toras Gym League Script Gui (Key Sys)"
 }
 
 -- Create buttons for each script
@@ -57,7 +60,7 @@ for _, name in ipairs(orderedScripts) do
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
     button.Text = name
     button.Font = Enum.Font.SourceSans
-    button.TextSize = 14
+    button.TextSize = 13
     button.Parent = mainFrame
 
     button.MouseButton1Click:Connect(function()
